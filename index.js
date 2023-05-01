@@ -217,6 +217,65 @@ class VirtualKeyboard {
     }
     return fragment;
   }
+
+  clickKey() {
+    document.addEventListener('mousedown', (e) => {
+      this.elements.area.focus();
+      this.addSymbol(e.target.id);
+
+      if (e.target.id === 'backspace') {
+        this.elements.area.focus();
+        this.backspaceRemove(e);
+      }
+
+      if (e.target.id === 'delete') {
+        this.elements.area.focus();
+        this.deleteChar(e);
+      }
+
+      if (e.target.id === 'space') {
+        this.elements.area.focus();
+        this.addChar(' ', 1);
+      }
+
+      if (e.target.id === 'tab') {
+        this.elements.area.focus();
+        this.addChar('    ', 4);
+      }
+
+      if (e.target.id === 'capslock') {
+        this.properties.capsLock = !this.properties.capsLock;
+        e.target.classList.toggle('active');
+        this.elements.capsLock = e.target.id;
+        this.update();
+      }
+
+      if (e.target.id === 'enter') {
+        this.elements.area.focus();
+        this.addChar('\n', 1);
+      }
+
+      if (e.target.id === 'shiftleft' || e.target.id === 'shiftright') {
+        if (!this.elements.shift) {
+          this.elements.shift = e.target.id;
+          e.target.classList.add('active');
+          this.properties.shift = true;
+          this.update();
+        }
+      }
+    });
+
+    document.addEventListener('mouseup', (e) => {
+      if (e.target.id === 'shiftleft' || e.target.id === 'shiftright') {
+        if (this.elements.shift === e.target.id) {
+          this.elements.shift = null;
+          e.target.classList.remove('active');
+          this.properties.shift = false;
+          this.update();
+        }
+      }
+    });
+  }
 }
 const newVirtualKeyboard = new VirtualKeyboard();
 window.addEventListener('DOMContentLoaded', () => {
