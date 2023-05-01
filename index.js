@@ -177,6 +177,23 @@ class VirtualKeyboard {
       }
     }
   }
+
+  createRows() {
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < mass.length; i++) {
+      const row = document.createElement('div');
+      row.className = `${'keyboard__row'} ${`row${i + 1}`}`;
+      for (let j = 0; j < mass[i].length; j++) {
+        const itemKey = document.createElement('div');
+        itemKey.classList.add('item');
+        itemKey.id = (`${mass[i][j].code.toLowerCase()}`);
+        itemKey.textContent = this.getSymbol(mass[i][j]);
+        row.append(itemKey);
+      }
+      fragment.append(row);
+    }
+    return fragment;
+  }
 }
 const newVirtualKeyboard = new VirtualKeyboard();
 window.addEventListener('DOMContentLoaded', () => {
