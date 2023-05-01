@@ -1,3 +1,5 @@
+import mass from './data.js';
+
 class VirtualKeyboard {
   constructor() {
     this.elements = {
@@ -85,6 +87,31 @@ class VirtualKeyboard {
     footerText.classList.add('footer__text');
     footerText.innerText = 'Клавиатура создана в операционной системе Windows. Для переключения языка комбинация: левыe ctrl + alt';
     document.querySelector('.footer__content').append(footerText);
+  }
+
+  addSymbol(e) {
+    for (let x = 0; x < mass.length; x++) {
+      for (let y = 0; y < mass[x].length; y++) {
+        if ((mass[x][y].code.toLowerCase() === e.toLowerCase())
+              && (mass[x][y].controlElement !== true)) {
+          const cursorPosition = this.elements.area.selectionStart;
+          const textBeforeCursor = this.elements.area.value.substring(0, cursorPosition);
+          const textAfterCursor = this.elements.area.value.substring(cursorPosition);
+          this.elements.area.value = `${textBeforeCursor}${this.getSymbol(mass[x][y])}${textAfterCursor}`;
+          this.elements.area.selectionStart = cursorPosition + 1;
+          this.elements.area.selectionEnd = cursorPosition + 1;
+        }
+      }
+    }
+  }
+
+  addChar(char, number) {
+    const cursorPosition = this.elements.area.selectionStart;
+    const textBeforeCursor = this.elements.area.value.substring(0, cursorPosition);
+    const textAfterCursor = this.elements.area.value.substring(cursorPosition);
+    this.elements.area.value = `${textBeforeCursor}${char}${textAfterCursor}`;
+    this.elements.area.selectionStart = cursorPosition + number;
+    this.elements.area.selectionEnd = cursorPosition + number;
   }
 
   getSymbol(key) {
