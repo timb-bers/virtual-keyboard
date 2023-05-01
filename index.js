@@ -111,6 +111,8 @@ class VirtualKeyboard {
         if (active.id === 'capslock') {
           active.classList.toggle('active');
         } else if (!this.elements.shift) active.classList.add('active');
+
+        if (active.id === 'altright') document.getElementById('controlleft').classList.remove(active);
       }
 
       if (e.code === 'CapsLock') {
