@@ -86,6 +86,15 @@ class VirtualKeyboard {
     footerText.innerText = 'Клавиатура создана в операционной системе Windows. Для переключения языка комбинация: левыe ctrl + alt';
     document.querySelector('.footer__content').append(footerText);
   }
+
+  getSymbol(key) {
+    if (key.controlElement) return key.data;
+    const value = `${this.properties.shift
+      ? key.shift[this.properties.language]
+      : key.data[this.properties.language]}`;
+    const upperCase = this.properties.capsLock !== this.properties.shift;
+    return upperCase ? value.toUpperCase() : value.toLowerCase();
+  }
 }
 const newVirtualKeyboard = new VirtualKeyboard();
 window.addEventListener('DOMContentLoaded', () => {
