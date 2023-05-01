@@ -1,0 +1,202 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Georgia", sans-serif;
+}
+
+ul,
+ol,
+form,
+input,
+button {
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd,
+pre,
+code,
+form,
+input,
+button {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+}
+
+.header__title {
+  font-size: 82px;
+  line-height: 92px;
+  text-align: center;
+}
+
+.title {
+  margin: 40px 0;
+}
+
+.text-area__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: 40px auto;
+}
+
+.text-area__input {
+  display: block;
+  border: 1px solid #000;
+  resize: none;
+  font-size: 48px;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.keyboard__content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  border: 2px solid #000;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 15px;
+}
+
+.keyboard__row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.item {
+  display: flex;
+  background-color: #fff;
+  border: 1px solid #000;
+  text-align: center;
+  border-radius: 5px;
+  user-select: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+#backspace {
+  width: 140px;
+}
+
+#delete,
+#tab {
+  width: 60px;
+}
+
+#capslock {
+  width: 120px;
+}
+
+#shiftleft {
+  width: 120px;
+}
+
+#controlleft,
+#controlright {
+  width: 60px;
+}
+
+#enter {
+  width: 120px;
+}
+
+#shiftright {
+  width: 120px;
+}
+
+#space {
+  width: 400px;
+  font-size: 0;
+}
+
+.item:hover {
+  background: #a09c9cc7;
+  border: 1px solid transparent;
+}
+
+.active {
+  background: #a09c9cc7;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  transform: scale(0.9, 0.9);
+  transition: all 0.1s linear;
+}
+
+.item:active {
+  opacity: 0.7;
+  border: none;
+  border-radius: 20px;
+  transform: scale(0.9, 0.9);
+  transition: all 0.1s linear;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  width: 80%;
+  text-align: center;
+}
+
+.footer__text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
