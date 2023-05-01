@@ -140,6 +140,24 @@ class VirtualKeyboard {
     }
   }
 
+  deleteChar(value) {
+    if (value) {
+      const start = this.elements.area.selectionStart;
+      const end = this.elements.area.selectionEnd;
+      if (start === end) {
+        this.elements.area.value = `${this.elements.area.value.substring(0, start)
+          + this.elements.area.value.substring(start + 1)}`;
+        this.elements.area.selectionEnd = start;
+        this.elements.area.selectionStart = start;
+      } else {
+        this.elements.area.value = `${this.elements.area.value.substring(0, start)
+          + this.elements.area.value.substring(end)}`;
+        this.elements.area.selectionEnd = start;
+        this.elements.area.selectionStart = start;
+      }
+    }
+  }
+
   getSymbol(key) {
     if (key.controlElement) return key.data;
     const value = `${this.properties.shift
