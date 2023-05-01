@@ -31,6 +31,43 @@ class VirtualKeyboard {
     const mainInner = document.createElement('div');
     mainInner.classList.add('header__inner');
     document.querySelector('.header').append(headerInner);
+
+    this.elements.main = document.createElement('main');
+    this.elements.main.classList.add('main');
+    document.querySelector('.header').insertAdjacentElement('afterend', this.elements.main);
+
+    const sectionArea = document.createElement('section');
+    sectionArea.classList.add('text-area');
+    document.querySelector('.main').append(sectionArea);
+    const textAreaInner = document.createElement('div');
+    textAreaInner.classList.add('text-area__inner');
+    document.querySelector('.text-area').append(textAreaInner);
+    const containerArea = document.createElement('div');
+    containerArea.classList.add('container');
+    document.querySelector('.text-area__inner').append(containerArea);
+    const areaContent = document.createElement('div');
+    areaContent.classList.add('text-area__content');
+    document.querySelectorAll('.container')[1].append(areaContent);
+    this.elements.area = document.createElement('textarea');
+    this.elements.area.classList.add('text-area__input');
+    this.elements.area.setAttribute('placeholder', 'Пожалуйста введите ваш текст...');
+    this.elements.area.setAttribute('rows', '5');
+    this.elements.area.setAttribute('cols', '60');
+    document.querySelector('.text-area__content').append(this.elements.area);
+
+    const keyboard = document.createElement('section');
+    sectionArea.classList.add('keyboard');
+    document.querySelector('.main').append(keyboard);
+    const keyboardInner = document.createElement('div');
+    keyboardInner.classList.add('keyboard__inner');
+    document.querySelector('.keyboard').append(keyboardInner);
+    const containerKeyboard = document.createElement('div');
+    containerKeyboard.classList.add('container');
+    document.querySelector('.keyboard__inner').append(containerKeyboard);
+    this.elements.content = document.createElement('div');
+    this.elements.content.classList.add('keyboard__content');
+    document.querySelectorAll('.container')[2].append(this.elements.content);
+    this.elements.content.append(this.createRows());
   }
 }
 const newVirtualKeyboard = new VirtualKeyboard();
