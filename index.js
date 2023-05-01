@@ -166,6 +166,17 @@ class VirtualKeyboard {
     const upperCase = this.properties.capsLock !== this.properties.shift;
     return upperCase ? value.toUpperCase() : value.toLowerCase();
   }
+
+  update() {
+    for (let x = 0; x < mass.length; x++) {
+      for (let y = 0; y < mass[x].length; y++) {
+        const itemKey = document.getElementById(`${mass[x][y].code.toLowerCase()}`);
+        if (itemKey.childNodes[0]) {
+          itemKey.childNodes[0].textContent = this.getSymbol(mass[x][y]);
+        }
+      }
+    }
+  }
 }
 const newVirtualKeyboard = new VirtualKeyboard();
 window.addEventListener('DOMContentLoaded', () => {
