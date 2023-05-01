@@ -114,6 +114,32 @@ class VirtualKeyboard {
     this.elements.area.selectionEnd = cursorPosition + number;
   }
 
+  backspaceRemove(value) {
+    if (value) {
+      const start = this.elements.area.selectionStart;
+      const end = this.elements.area.selectionEnd;
+      if (start !== end) {
+        this.elements.area.value = `${this.elements.area.value.substring(0, start)
+          + this.elements.area.value.substring(end)}`;
+        this.elements.area.selectionStart = start;
+        this.elements.area.selectionEnd = start;
+      } else if (start !== 0) {
+        this.elements.area.value = `${this.elements.area.value.substring(0, start - 1)
+          + this.elements.area.value.substring(end)}`;
+        this.elements.area.selectionStart = start - 1;
+        this.elements.area.selectionEnd = start - 1;
+      } else if (end === 0) return;
+    } else {
+      const start = this.elements.area.selectionStart;
+      const end = this.elements.area.selectionEnd;
+      this.elements.area.value = `${this.elements.area.value.substring(0, start)
+        + this.elements.area.innerText
+        + this.elements.area.value.substring(end)}`;
+      this.elements.area.selectionStart = start + 1;
+      this.elements.area.selectionEnd = start + 1;
+    }
+  }
+
   getSymbol(key) {
     if (key.controlElement) return key.data;
     const value = `${this.properties.shift
