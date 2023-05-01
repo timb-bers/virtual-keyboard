@@ -1,5 +1,16 @@
 import mass from './data.js';
 
+const EN = 'en';
+const RU = 'ru';
+
+function getLanguage() {
+  return localStorage.getItem('language');
+}
+
+function setLanguage(language) {
+  localStorage.setItem('language', language);
+}
+
 class VirtualKeyboard {
   constructor() {
     this.elements = {
@@ -12,6 +23,8 @@ class VirtualKeyboard {
     this.properties = {
       capsLock: false,
       shift: false,
+      lang: [EN, RU],
+      language: getLanguage() || EN,
     };
   }
 
@@ -87,6 +100,16 @@ class VirtualKeyboard {
     footerText.classList.add('footer__text');
     footerText.innerText = 'Клавиатура создана в операционной системе Windows. Для переключения языка комбинация: левыe ctrl + alt';
     document.querySelector('.footer__content').append(footerText);
+  }
+
+  language() {
+    const current = this.properties.language;
+    const currentIndex = this.properties.lang.indexOf(current);
+    if (currentIndex < this.properties.lang.length - 1) {
+      this.properties.language = this.properties.lang[currentIndex + 1];
+    } else [this.properties.language] = this.properties.lang;
+    this.update();
+    setLanguage(this.properties.language);
   }
 
   addSymbol(e) {
