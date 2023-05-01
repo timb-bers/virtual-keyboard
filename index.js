@@ -68,6 +68,23 @@ class VirtualKeyboard {
     this.elements.content.classList.add('keyboard__content');
     document.querySelectorAll('.container')[2].append(this.elements.content);
     this.elements.content.append(this.createRows());
+
+    const footer = document.createElement('footer');
+    footer.classList.add('footer');
+    document.querySelector('.main').insertAdjacentElement('afterend', footer);
+    const footerInner = document.createElement('div');
+    footerInner.classList.add('footer__inner');
+    document.querySelector('.footer').append(footerInner);
+    const containerFooter = document.createElement('div');
+    containerFooter.classList.add('container');
+    document.querySelector('.footer__inner').append(containerFooter);
+    const footerContent = document.createElement('div');
+    footerContent.classList.add('footer__content');
+    document.querySelectorAll('.container')[3].append(footerContent);
+    const footerText = document.createElement('p');
+    footerText.classList.add('footer__text');
+    footerText.innerText = 'Клавиатура создана в операционной системе Windows. Для переключения языка комбинация: левыe ctrl + alt';
+    document.querySelector('.footer__content').append(footerText);
   }
 }
 const newVirtualKeyboard = new VirtualKeyboard();
