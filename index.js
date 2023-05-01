@@ -100,6 +100,107 @@ class VirtualKeyboard {
     footerText.classList.add('footer__text');
     footerText.innerText = 'Клавиатура создана в операционной системе Windows. Для переключения языка комбинация: левыe ctrl + alt';
     document.querySelector('.footer__content').append(footerText);
+
+    document.addEventListener('keydown', (e) => {
+      this.elements.area.focus();
+      e.preventDefault();
+      const active = document.getElementById(`${e.code.toLowerCase()}`);
+      this.addSymbol(e.code);
+
+      if (active) {
+        if (active.id === 'capslock') {
+          active.classList.toggle('active');
+        } else if (!this.elements.shift) active.classList.add('active');
+      }
+
+      if (e.code === 'CapsLock') {
+        this.properties.capsLock = !this.properties.capsLock;
+        this.elements.capsLock = e.code.toLowerCase();
+        this.update();
+      }
+
+      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+        if (!this.elements.shift) {
+          this.elements.shift = e.code;
+          this.properties.shift = true;
+          this.update();
+        }
+      }
+
+      if (e.code === 'Space') {
+        this.elements.area.focus();
+        this.addChar(' ', 1);
+      }
+
+      if (e.code === 'Tab') {
+        this.elements.area.focus();
+        this.addChar('    ', 4);
+      }
+
+      if (e.code === 'Enter') {
+        this.elements.area.focus();
+        this.addChar('\n', 1);
+      }
+
+      if (e.code === 'Backspace') {
+        this.elements.area.focus();
+        this.backspaceRemove(e);
+      }
+
+      if (e.code === 'Delete') {
+        this.elements.area.focus();
+        this.deleteChar(e);
+      }
+
+      if (e.code === 'ArrowRight') {
+        this.elements.area.focus();
+        this.addChar('►', 1);
+      }
+
+      if (e.code === 'ArrowLeft') {
+        this.elements.area.focus();
+        this.addChar('◄', 1);
+      }
+
+      if (e.code === 'ArrowDown') {
+        this.elements.area.focus();
+        this.addChar('▼', 1);
+      }
+
+      if (e.code === 'ArrowUp') {
+        this.elements.area.focus();
+        this.addChar('▲', 1);
+      }
+
+      if (
+        (e.code === 'ControlLeft' && e.altKey)
+        || (e.code === 'ControlRight' && e.altKey)
+        || (e.code === 'AltLeft' && e.ctrlKey)
+        || (e.code === 'AltRight' && e.ctrlKey)
+      ) {
+        this.language();
+      }
+    });
+
+    document.addEventListener('keyup', (e) => {
+      this.elements.area.focus();
+
+      const active = document.getElementById(`${e.code.toLowerCase()}`);
+      if (active) {
+        if (active.id !== 'capslock') active.classList.remove('active');
+        if (this.elements.shift === e.code) active.classList.remove('active');
+      }
+
+      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+        if (this.elements.shift === e.code) {
+          this.elements.shift = null;
+          this.properties.shift = false;
+          this.update();
+        }
+      }
+    });
+
+    this.clickKey();
   }
 
   language() {
