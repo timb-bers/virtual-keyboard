@@ -1,14 +1,13 @@
-# virtual-keyboard
+# Виртуальная клавиатура
 
 # Требования к проекту
- - the generation of DOM elements is implemented. body in the index.html is empty (can contain only script tag)
- - pressing a key on a physical keyboard highlights the key on the virtual keyboard (you should check keystrokes of numbers, letters, punctuation marks, backspace, del (if it's present), enter, shift, alt, ctrl, tab, caps lock, space, arrow keys
-- switching keyboard layouts between English and another language is implemented. Selected language should be saved and used on page reload. A keyboard shortcut for switching a language should be specified on the page
-- mouse clicks on buttons of the virtual keyboard or pressing buttons on a physical keyboard inputs characters to the input field (text area)
-- animation of pressing a key is implemented
-- usage of ES6+ features (classes, property destructuring, etc)
-- usage of ESLint
-- requirements to the repository, commits and pull request are met
+ - реализовать генерацию элементов DOM. body в index.html пуст (может содержать только тег script)
+ - нажатие клавиши на физической клавиатуре выделяет клавишу на виртуальной клавиатуре (необходимо проверить нажатие цифр, букв, знаков препинания, backspace, del (если он есть), enter, shift, alt, ctrl, tab, caps lock, пробел, стрелки).
+- реализовать переключение раскладки клавиатуры между английским и другим языком. Выбранный язык должен сохраняться и использоваться при перезагрузке страницы. На странице должна быть указана комбинация клавиш для переключения языка
+- щелчки мышью по кнопкам виртуальной клавиатуры или нажатие кнопок на физической клавиатуре вводят символы в поле ввода (текстовую область)
+- реализовать анимацию нажатия клавиши
+- использовать возможности ES6+ (классы, деструктуризация свойств и т.д.)
+- использовать ESLint
 
 # Ссылка на проект
 https://timb-bers.github.io/virtual-keyboard/
